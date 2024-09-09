@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-2 text-center">
+            {% if page.profile %}
+                <img src="{{ page.profile | relative_url }}" alt="{{ page.title }}" class="img-fluid" style="width: 128px; height: 128px;">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <h1>{{ page.title }}</h1>
+            <p class="text-muted">
+                <strong>Date:</strong> {{ page.start | date: "%B %d, %Y %H:%M %Z" }}<br>
+                <strong>End:</strong> {{ page.end | date: "%B %d, %Y %H:%M %Z" }}<br>
+                <strong>Host:</strong> {{ page.host }}<br>
+                <strong>Location:</strong> {{ page.location_type }} - {{ page.location }}
+            </p>
+            <p>{{ page.short_description }}</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        {{ content }}
+    </div>
+
+    {% if page.resources %}
+    <div class="mt-4">
+        <h3>Resources:</h3>
+        <ul>
+            {% for resource in page.resources %}
+            <li><a href="{{ resource.url | relative_url }}">{{ resource.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<section class="jumbotron text-center unshadow bg-light">
+  <div class="container">
+    <h1 class="display-4">Welcome to the WASP NLP Cluster</h1>
+  </div>
+</section>
+
+<!-- About Section -->
+<div class="container">
+  <div class="clearfix mb-5">{{ content }}</div>
+
+  <!-- Latest News -->
+  {% assign latest_news = site.news | sort: 'date' | reverse %}
+  <div class="row mb-5">
+    {% if page.news and site.announcements.enabled %}
+      <div class="col-md-6">
+        {% if latest_news.size > 0 %}
+        <h3>
+          <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
+        </h3>
+        {% include latest_news.liquid limit=true %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Latest Posts -->
+    {% assign latest_posts = site.posts | sort: 'date' | reverse %}
+    {% if site.latest_posts.enabled %}
+      <div class="col-md-6">
+        {% if latest_posts.size > 0 %}
+        <h3>
+          <a href="{{ '/blog/' | relative_url }}" style="color: inherit">Latest Posts</a>
+        </h3>
+        {% include latest_posts.liquid %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+
+  <div class="row mt-5">
+    <!-- Social -->
+    {% if page.social %}
+      <div class="col-md-12">
+        <div class="social">
+          <div class="contact-icons">{% include social.liquid %}</div>
+          <div class="contact-note">{{ site.contact_note }}</div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if site.newsletter.enabled and site.footer_fixed %}
+      <div class="col-md-12">
+        {% include scripts/newsletter.liquid center=true %}
+      </div>
+    {% endif %}
+  </div>
+
+</div>

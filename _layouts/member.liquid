@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      {% if page.image %}
+        <img src="{% if page.image %}{{ page.image | relative_url }}{% else %}{{ 'assets/templates/profile.png' | relative_url }}{% endif %}" alt="{{ page.fullname }}" class="rounded-circle mb-4" style="width: 128px; height: 128px;">
+      {% endif %}
+      <h2>{{ page.fullname }}</h2>
+      <p><strong>{{ page.position }}</strong></p>
+      <p><small>{{ page.pronouns }}</small></p>
+      <div class="social-links d-flex justify-content-center mt-3">
+        {% if page.email %}
+          <a href="mailto:{{ page.email }}" class="mx-1"><i class="fas fa-envelope"></i></a>
+        {% endif %}
+        {% if page.scholar_userid %}
+          <a href="https://scholar.google.com/citations?user={{ page.scholar_userid }}" target="_blank" class="mx-1"><i class="fab fa-google"></i></a>
+        {% endif %}
+        {% if page.github_username %}
+          <a href="https://github.com/{{ page.github_username }}" target="_blank" class="mx-1"><i class="fab fa-github"></i></a>
+        {% endif %}
+        {% if page.linkedin_username %}
+          <a href="https://linkedin.com/in/{{ page.linkedin_username }}" target="_blank" class="mx-1"><i class="fab fa-linkedin"></i></a>
+        {% endif %}
+        {% if page.twitter_username %}
+          <a href="https://twitter.com/{{ page.twitter_username }}" target="_blank" class="mx-1"><i class="fab fa-twitter"></i></a>
+        {% endif %}
+        {% if page.website %}
+          <a href="{{ page.website }}" target="_blank" class="mx-1"><i class="fas fa-globe"></i></a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h3>About</h3>
+      <p>{{ page.description | markdownify }}</p>
+      <hr class="mb-5">
+      {{ content | markdownify }}
+    </div>
+  </div>
+</div>
